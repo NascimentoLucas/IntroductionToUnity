@@ -28,7 +28,6 @@ public class Player : MonoBehaviour
         forward = Vector3.zero;
 
         //Cursor.visible = false; //Oculta o cursor do mouse
-        Cursor.lockState = CursorLockMode.Locked; //Trava o cursor do centro
     }
 
     void Update()
@@ -36,7 +35,15 @@ public class Player : MonoBehaviour
         mouseX += Input.GetAxis("Mouse X") * sensibilidade; // Incrementa o valor do eixo X e multiplica pela sensibilidade
         mouseY -= Input.GetAxis("Mouse Y") * sensibilidade; // Incrementa o valor do eixo Y e multiplica pela sensibilidade. (Obs. usamos o - para inverter os valores)
 
-        Camera.main.transform.eulerAngles = new Vector3(mouseY, mouseX, 0); //Executa a rotação da câmera de acordo com os eixos
+        if (Input.GetMouseButton(1))
+        {
+            Cursor.lockState = CursorLockMode.Locked; //Trava o cursor do centro
+            Camera.main.transform.eulerAngles = new Vector3(mouseY, mouseX, 0); //Executa a rotação da câmera de acordo com os eixos 
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.None;
+        }
         forward = Camera.main.transform.forward;
         right = Camera.main.transform.right;
 
