@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : Enemy
 {
     private const string Horizontal = "Horizontal";
     private const string Vertical = "Vertical";
@@ -29,10 +29,12 @@ public class Player : MonoBehaviour
 
         //Cursor.visible = false; //Oculta o cursor do mouse
         Cursor.lockState = CursorLockMode.Locked; //Trava o cursor do centro
+
+       
     }
 
     void Update()
-    {
+   {
         mouseX += Input.GetAxis("Mouse X") * sensibilidade; // Incrementa o valor do eixo X e multiplica pela sensibilidade
         mouseY -= Input.GetAxis("Mouse Y") * sensibilidade; // Incrementa o valor do eixo Y e multiplica pela sensibilidade. (Obs. usamos o - para inverter os valores)
 
