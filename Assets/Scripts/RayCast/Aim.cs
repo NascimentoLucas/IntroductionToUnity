@@ -9,14 +9,19 @@ public class Aim : MonoBehaviour
     [SerializeField]
     private Transform tip;
     private RaycastHit hit;
+    [SerializeField]
+    private int dist = 10;
 
     // Update is called once per frame
     void Update()
     {
         // Does the ray intersect any objects excluding the player layer
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity))
+        
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, dist))
         {
+            // Linha no editor
             Debug.DrawRay(transform.position, transform.forward * hit.distance, Color.red);
+
             if (hit.transform.tag.Equals("Enemy"))
             {
                 Debug.Log("Did Hit"); 
@@ -24,7 +29,7 @@ public class Aim : MonoBehaviour
         }
         else
         {
-            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 1000, Color.yellow);
+            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * dist, Color.blue);
         }
     }
 
